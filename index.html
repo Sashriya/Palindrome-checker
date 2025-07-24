@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 5px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        height: 100vh;
+        background: linear-gradient(to right, #e0f7fa, #abebf3);
+    }
+
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.701);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+        box-shadow: inset 0 1px 3px rgba(2, 97, 107, 0.619);
+        &:focus {
+            border-color: #006981;
+            outline: none;
+        }
+    }
+
+    button {
+        padding: 10px;
+        background-color: #006981;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 100%;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        &:hover {
+            background-color: #005f6b;
+        }
+    }
+
+    p {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 18px;
+        color: #333;
+        font-weight: bold;
+        &.success {
+            color: green;
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <h2>Palindrome Checker</h2>
+        <input type="text" id="inputText" placeholder="Enter text to check">
+        <button id="checkButton">Check</button>
+        <p id="resultText"></p>
+    </div>
+    <script>
+        document.getElementById("checkButton").addEventListener("click", function() {
+            var text = document.getElementById("inputText").value;
+            var result = isPalindrome(text);
+            document.getElementById("resultText").innerText = result ? "It's a palindrome!" : "Not a palindrome.";
+            if (text.trim() === "") {
+                    document.getElementById("resultText").innerText = "Please enter a text.";
+                    document.getElementById("resultText").style.color = "black";
+            } else {
+                document.getElementById("resultText").style.color = result ? "green" : "red";
+            }
+        });
+
+        function isPalindrome(str) {
+            var cleaned = str.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+            var reversed = cleaned.split("").reverse().join("");
+            return cleaned === reversed;
+        }
+    </script>
+</body>
+</html>
